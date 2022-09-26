@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\API\AntrianAPIController;
 use App\Http\Controllers\API\AntrianBPJSController;
 use App\Http\Controllers\API\VclaimBPJSController;
 use App\Http\Controllers\API\WhatsappController;
@@ -95,4 +96,22 @@ Route::prefix('wa')->group(function () {
     Route::get('index', [WhatsappController::class, 'index']);
     Route::post('send_message', [WhatsappController::class, 'send_message']);
     Route::post('daftar_antrian', [WhatsappController::class, 'daftar_antrian']);
+});
+
+Route::prefix('test')->group(function () {
+    Route::get('signature', [AntrianAPIController::class, 'signature']);
+    Route::get('ref_poli', [AntrianAPIController::class, 'ref_poli']);
+    Route::get('ref_dokter', [AntrianAPIController::class, 'ref_dokter']);
+    Route::get('ref_jadwal_dokter', [AntrianAPIController::class, 'ref_jadwal_dokter']);
+    // Route::prefix('ref')->group(function () {
+    //     Route::get('dokter', [AntrianBPJSController::class, 'ref_dokter']);
+    //     Route::get('jadwal', [AntrianBPJSController::class, 'ref_jadwal_dokter']);
+    //     Route::post('updatejadwal', [AntrianBPJSController::class, 'update_jadwal_dokter']);
+    // });
+    // Route::post('tambah', [AntrianBPJSController::class, 'tambah_antrian']);
+    // Route::post('update', [AntrianBPJSController::class, 'update_antrian']);
+    // Route::post('batal', [AntrianBPJSController::class, 'batal_antrian_bpjs']);
+    // Route::post('listtask', [AntrianBPJSController::class, 'list_waktu_task']);
+    // Route::get('dashboard_tanggal', [AntrianBPJSController::class, 'dashboard_tanggal']);
+    // Route::get('dashboard_bulan', [AntrianBPJSController::class, 'dashboard_bulan']);
 });
