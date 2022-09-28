@@ -10,26 +10,50 @@ class AntrianDB extends Model
     use HasFactory;
 
     protected $connection = 'mysql2';
-    protected $table = 'mw_antrian';
-    protected $primaryKey = 'id';
+    protected $table = 'jkn_antrian';
 
     protected $fillable = [
-        'kode_antrian',
-        'tanggal',
-        'nik',
-        'nama_antrian',
-        'nama',
-        'no_rm',
-        'phone',
-        'kode_poli',
-        'tipe',
-        'status',
-        'nomor_bpjs',
-        'no_urut',
+        "kodebooking",
+        "kode_kunjungan",
+        "nomorkartu",
+        "nik",
+        "nohp",
+        "kodepoli",
+        "norm",
+        "method",
+        "tanggalperiksa",
+        "kodedokter",
+        "jampraktek",
+        "jeniskunjungan",
+        "nomorreferensi",
+        "nomorsuratkontrol",
+        "nomorrujukan",
+        "nomorsep",
+        "jenispasien",
+        "namapoli",
+        "pasienbaru",
+        "namadokter",
+        "nomorantrean",
+        "angkaantrean",
+        "lantaipendaftaran",
+        "lokasi",
+        "estimasidilayani",
+        "sisakuotajkn",
+        "kuotajkn",
+        "sisakuotanonjkn",
+        "kuotanonjkn",
+        "taskid",
+        "keterangan",
+        "status_api",
+        "user",
+        "nama",
+        "taskid1",
+        "taskid2",
+        "taskid3",
     ];
 
-    public function unit()
+    public function pasien()
     {
-        return $this->belongsTo(UnitDB::class, 'kode_poli', 'kode_unit');
+        return $this->belongsTo(Pasien::class, 'nik', 'nik');
     }
 }

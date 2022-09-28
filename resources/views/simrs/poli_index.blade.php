@@ -9,10 +9,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <x-adminlte-card title="Poliklinik Aktif RSUD Waled" theme="info" icon="fas fa-info-circle" collapsible
-                maximizable>
+            <x-adminlte-card title="Poliklinik Aktif RSUD Waled" theme="info" icon="fas fa-info-circle" collapsible>
                 @php
-                    $heads = ['Nama Poliklinik',  'Subspesialis', 'Lokasi', 'Daftar', 'Status'];
+                    $heads = ['Nama Poliklinik', 'Nama Subspesialis', 'Lokasi', 'Loket', 'Status'];
                     $config['paging'] = false;
                 @endphp
                 <x-adminlte-datatable id="table1" :heads="$heads" :config="$config" striped bordered hoverable
@@ -21,16 +20,17 @@
                         <tr>
                             {{-- <td>{{ $item->kodepoli }}</td> --}}
                             {{-- <td>{{ $item->namapoli }}</td> --}}
-                            <td>{{ $item->kodesubspesialis }} - {{ $item->namasubspesialis }}</td>
+                            <td>{{ $item->kodepoli }} - {{ $item->namapoli }}</td>
                             <td>
+                                {{ $item->kodesubspesialis }} - {{ $item->namasubspesialis }}
                                 @if ($item->subspesialis)
-                                    Ya <i class="fas fa-check-circle text-success"></i>
+                                    <i class="fas fa-check-circle text-success"></i>
                                 @else
-                                    Bukan <i class="fas fa-times-circle text-danger"></i>
+                                    <i class="fas fa-times-circle text-danger"></i>
                                 @endif
                             </td>
                             <td>{{ $item->lokasi }}</td>
-                            <td>{{ $item->lantaipendaftaran }}</td>
+                            <td>{{ $item->loket }}</td>
                             <td>
                                 @if ($item->status == 1)
                                     <a href="{{ route('poli.edit', $item->id) }}">
@@ -52,7 +52,7 @@
             </x-adminlte-card>
         </div>
         <div class="col-md-6">
-            <x-adminlte-card title="Data Semua Poliklinik" theme="info" icon="fas fa-info-circle" collapsible maximizable>
+            <x-adminlte-card title="Data Semua Poliklinik" theme="info" icon="fas fa-info-circle" collapsible>
                 @php
                     $heads = ['Kode Poli', 'Nama Poli', 'Spesialis', 'Status'];
                 @endphp

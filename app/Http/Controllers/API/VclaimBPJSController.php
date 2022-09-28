@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\SepDB;
 use App\Models\SuratKontrol;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -760,7 +761,6 @@ class VclaimBPJSController extends Controller
             // "flagProcedure" => "required",
             // "kdPenunjang" => "required",
             // "assesmentPel" => "required",
-
             // "noSurat" => "required",
             // "kodeDPJP" => "required",
             "dpjpLayan" => "required",
@@ -848,6 +848,32 @@ class VclaimBPJSController extends Controller
         if ($response->metaData->code == 200) {
             $decrypt = $this->stringDecrypt($signature['decrypt_key'], $response->response);
             $response->response = json_decode($decrypt);
+            SepDB::create([
+                'noSep' => $response->response->sep->noSep,
+                'tglSep' => $response->response->sep->tglSep,
+                'jnsPelayanan' => $response->response->sep->jnsPelayanan,
+                'kelasRawat' => $response->response->sep->kelasRawat,
+                'diagnosa' => $response->response->sep->diagnosa,
+                'noRujukan' => $response->response->sep->noRujukan,
+                'poli' => $response->response->sep->poli,
+                'poliEksekutif' => $response->response->sep->poliEksekutif,
+                'catatan' => $response->response->sep->catatan,
+                'penjamin' => $response->response->sep->penjamin,
+                // peserta
+                'noKartu' => $response->response->sep->peserta->noKartu,
+                'nama' =>  $response->response->sep->peserta->nama,
+                'tglLahir' =>  $response->response->sep->peserta->tglLahir,
+                'noMr' =>  $response->response->sep->peserta->noMr,
+                'kelamin' =>  $response->response->sep->peserta->kelamin,
+                'jnsPeserta' =>  $response->response->sep->peserta->jnsPeserta,
+                'hakKelas' =>  $response->response->sep->peserta->hakKelas,
+                'noTelp' =>  $request->noTelp,
+                'asuransi' =>  $response->response->sep->peserta->asuransi,
+                // informasi
+                'dinsos' =>  $response->response->sep->informasi->dinsos,
+                'prolanisPRB' =>  $response->response->sep->informasi->prolanisPRB,
+                'noSKTM' =>  $response->response->sep->informasi->noSKTM,
+            ]);
         }
         return $response;
     }

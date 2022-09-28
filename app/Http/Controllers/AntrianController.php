@@ -1113,15 +1113,15 @@ class AntrianController extends Controller
             $request['waktu'] = Carbon::now()->timestamp * 1000;
             $vclaim = new AntrianBPJSController();
             $response = $vclaim->update_antrian($request);
-            try {
-                // notif wa
-                $wa = new WhatsappController();
-                $request['message'] = "Panggilan antrian atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " untuk segera dilayani di POLIKLINIK " . $antrian->namapoli;
-                $request['number'] = $antrian->nohp;
-                $wa->send_message($request);
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
+            // try {
+            //     // notif wa
+            //     $wa = new WhatsappController();
+            //     $request['message'] = "Panggilan antrian atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " untuk segera dilayani di POLIKLINIK " . $antrian->namapoli;
+            //     $request['number'] = $antrian->nohp;
+            //     $wa->send_message($request);
+            // } catch (\Throwable $th) {
+            //     //throw $th;
+            // }
             $antrian->update([
                 'taskid' => $request->taskid,
                 'status_api' => 1,
@@ -1155,15 +1155,15 @@ class AntrianController extends Controller
             'keterangan' => $request->keterangan,
             // 'user' => Auth::user()->name,
         ]);
-        try {
-            // notif wa
-            $wa = new WhatsappController();
-            $request['message'] = "Pelayanan di poliklinik atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " telah selesai. " . $request->keterangan;
-            $request['number'] = $antrian->nohp;
-            $wa->send_message($request);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        // try {
+        //     // notif wa
+        //     $wa = new WhatsappController();
+        //     $request['message'] = "Pelayanan di poliklinik atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " telah selesai. " . $request->keterangan;
+        //     $request['number'] = $antrian->nohp;
+        //     $wa->send_message($request);
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
         Alert::success('Success', "Antrian Berhasil Dilanjutkan ke Farmasi.\n" . $response->metadata->message);
         return redirect()->back();
     }
@@ -1182,15 +1182,15 @@ class AntrianController extends Controller
             'keterangan' => $request->keterangan,
             // 'user' => Auth::user()->name,
         ]);
-        try {
-            // notif wa
-            $wa = new WhatsappController();
-            $request['message'] = "Pelayanan di poliklinik atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " telah selesai. " . $request->keterangan;
-            $request['number'] = $antrian->nohp;
-            $wa->send_message($request);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        // try {
+        //     // notif wa
+        //     $wa = new WhatsappController();
+        //     $request['message'] = "Pelayanan di poliklinik atas nama pasien " . $antrian->nama . " dengan nomor antrean " . $antrian->nomorantrean . " telah selesai. " . $request->keterangan;
+        //     $request['number'] = $antrian->nohp;
+        //     $wa->send_message($request);
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
         Alert::success('Success', "Antrian Selesai. Semoga cepat sembuh.\n" . $response->metadata->message);
         return redirect()->back();
     }

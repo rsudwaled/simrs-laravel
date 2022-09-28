@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\API\AntrianBPJSController;
+use App\Http\Controllers\API\AntrianAPIController;
 use App\Models\Poliklinik;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +16,7 @@ class PoliklinikSeeder extends Seeder
      */
     public function run()
     {
-        $api = new AntrianBPJSController();
+        $api = new AntrianAPIController();
         $poli = $api->ref_poli()->response;
         foreach ($poli as $value) {
             if ($value->kdpoli == $value->kdsubspesialis) {
@@ -33,8 +33,6 @@ class PoliklinikSeeder extends Seeder
                     'namapoli' => $value->nmpoli,
                     'namasubspesialis' => $value->nmsubspesialis,
                     'subspesialis' => $subpesialis,
-                    'lokasi' => 1,
-                    'lantaipendaftaran' => 1,
                 ]
             );
         }

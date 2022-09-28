@@ -103,6 +103,24 @@ Route::prefix('test')->group(function () {
     Route::get('ref_poli', [AntrianAPIController::class, 'ref_poli']);
     Route::get('ref_dokter', [AntrianAPIController::class, 'ref_dokter']);
     Route::get('ref_jadwal_dokter', [AntrianAPIController::class, 'ref_jadwal_dokter']);
+    Route::post('tambah_antrean', [AntrianAPIController::class, 'tambah_antrean']);
+    Route::post('update_antrean', [AntrianAPIController::class, 'update_antrean']);
+    Route::post('batal_antrean', [AntrianAPIController::class, 'batal_antrean']);
+    Route::post('taskid_antrean', [AntrianAPIController::class, 'taskid_antrean']);
+    Route::get('dashboard_tanggal_antrean', [AntrianAPIController::class, 'dashboard_tanggal_antrean']);
+    Route::get('dashboard_bulan_antrean', [AntrianAPIController::class, 'dashboard_bulan_antrean']);
+    // WS RS
+    Route::get('token', [AntrianAPIController::class, 'token']);
+    Route::post('status_antrian', [AntrianAPIController::class, 'status_antrian']);
+    Route::post('ambil_antrian', [AntrianAPIController::class, 'ambil_antrian']);
+    Route::post('sisa_antrian', [AntrianAPIController::class, 'sisa_antrian']);
+    Route::post('batal_antrian', [AntrianAPIController::class, 'batal_antrian']);
+    Route::post('checkin_antrian', [AntrianAPIController::class, 'checkin_antrian']);
+    Route::post('checkin_antrian', [AntrianAPIController::class, 'checkin_antrian']);
+    Route::post('info_pasien_baru', [AntrianAPIController::class, 'info_pasien_baru']);
+    Route::post('jadwal_operasi_rs', [AntrianAPIController::class, 'jadwal_operasi_rs']);
+    Route::post('jadwal_operasi_pasien', [AntrianAPIController::class, 'jadwal_operasi_pasien']);
+
     // Route::prefix('ref')->group(function () {
     //     Route::get('dokter', [AntrianBPJSController::class, 'ref_dokter']);
     //     Route::get('jadwal', [AntrianBPJSController::class, 'ref_jadwal_dokter']);

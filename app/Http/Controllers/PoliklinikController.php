@@ -42,7 +42,7 @@ class PoliklinikController extends Controller
                     'namasubspesialis' => $value->nmsubspesialis,
                     'subspesialis' => $subpesialis,
                     'lokasi' => 1,
-                    'lantaipendaftaran' => 1,
+                    'loket' => 1,
                     'status' => 0,
                 ]
             );

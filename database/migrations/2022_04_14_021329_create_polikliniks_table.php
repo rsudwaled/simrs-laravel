@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('kodesubspesialis')->index();
             $table->string('namasubspesialis');
             $table->string('subspesialis');
-            $table->string('lokasi');
-            $table->string('lantaipendaftaran');
+            $table->string('lokasi')->nullable();
+            $table->string('loket')->nullable();
             $table->string('status')->default(0);
             $table->timestamps();
         });
